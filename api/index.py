@@ -54,7 +54,7 @@ def url_to_text():
         return error_response('Invalid URL.')
 
     try:
-        title, text = extract_title_and_text_from_url(url)
+        title, text, authors, publish_date, top_image, movies = extract_title_and_text_from_url(url)
     except Exception as e:
         return error_response(f'Error extracting text from URL: {e}')
 
@@ -63,7 +63,11 @@ def url_to_text():
     response = jsonify([{
         'body': text,
         'href': url,
-        'title': title
+        'title': title,
+        'authors': authors,
+        'publish_date': publish_date,
+        'top_image': top_image,
+        'movies': movies
     }])
 
     return response
@@ -85,4 +89,4 @@ def extract_title_and_text_from_url(url: str):
     article.download()
     article.parse()
 
-    return article.title, article.text
+    return article.title, article.text, article.authors, article.publish_date, article.top_image, article.movies 
