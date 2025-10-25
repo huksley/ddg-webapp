@@ -2,7 +2,7 @@ import re
 #import json
 import simplejson as json
 from flask import Flask, request, jsonify, Response
-from duckduckgo_search import DDGS
+from ddgs import DDGS
 from newspaper import Article
 from flask_cors import CORS
 
@@ -29,7 +29,7 @@ def search():
         max_results = min(max_results, 10)
 
         ddgs = DDGS()
-        results = ddgs.text(keywords=q, region=region, safesearch=safesearch, timelimit=time, max_results=max_results)
+        results = ddgs.text(query=q, region=region, safesearch=safesearch, timelimit=time, max_results=max_results)
         response = json.dumps(results, iterable_as_array=True)
         resp = Response(response)
         resp.headers['Content-Type'] = 'application/json'

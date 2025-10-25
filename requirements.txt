@@ -1,5 +1,6 @@
 Flask==3.0.1
 flask_cors==4.0.0
-duckduckgo_search==4.2
-newspaper3k
-simplejson
+ddgs==9.6.1
+newspaper3k==0.2.8
+simplejson==3.19.2
+lxml_html_clean
